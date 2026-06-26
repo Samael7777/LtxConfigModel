@@ -14,6 +14,8 @@
     <PackageTags>Stalker;S.T.A.L.K.E.R.;ltx;configuration file;</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/Samael7777/LtxConfigModel</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Samael7777/LtxConfigModel</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
