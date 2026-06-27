@@ -1,9 +1,14 @@
 ﻿namespace LtxConfigModel.LineElements;
 
-internal class InlineDataElement(string text, int leftPadding = 0, int rightPadding = 0): 
-    LineElement(new Padding(leftPadding, rightPadding))
+internal class InlineDataElement : 
+    LineElement
 {
-    public string Text { get; } = text;
+    public InlineDataElement(string text, int leftPadding = 0, int rightPadding = 0) : base(new Padding(leftPadding, rightPadding))
+    {
+        Text = text;
+    }
+
+    public string Text { get; }
 
     public override string Serialize() => $"{Padding.LeftStr}{Text}{Padding.RightStr}";
 }

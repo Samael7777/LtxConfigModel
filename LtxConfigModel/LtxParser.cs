@@ -8,10 +8,9 @@ namespace LtxConfigModel;
 /// key/value pairs and preserves padding and comments in the resulting LtxDocument model.
 /// Use LtxParser.Parse() to obtain an LtxDocument instance.
 /// </summary>
-public partial class LtxParser
+public class LtxParser
 {
-    [GeneratedRegex(@"^\s*([A-Za-z0-9_$.]+)\s*(?:=\s*(.*?))?\s*$", RegexOptions.Compiled)]
-    private static partial Regex KeyValueRegex { get; }
+    private static readonly Regex s_KeyValueRegex = new(@"^\s*([A-Za-z0-9_$.]+)\s*(?:=\s*(.*?))?\s*$");
 
     private readonly int _tabSize;
     private readonly LtxDocument _document;
@@ -142,7 +141,7 @@ public partial class LtxParser
             return false;
 
         var rawString = _currentUnparsedLine.DataElement.Text;
-        var isKeyValueString = KeyValueRegex.Match(rawString);
+        var isKeyValueString = s_KeyValueRegex.Match(rawString);
         if (!isKeyValueString.Success)
             return false;
 

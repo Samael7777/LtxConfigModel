@@ -9,7 +9,7 @@ namespace LtxConfigModel.LineElements;
 /// </summary>
 public class ValueElement : LineElement
 {
-    private readonly List<ValueItem> _items = [];
+    private readonly List<ValueItem> _items = new();
 
     /// <summary>List of individual value tokens.</summary>
     public IReadOnlyList<ValueItem> Items => _items;

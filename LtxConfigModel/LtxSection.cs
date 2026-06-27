@@ -12,8 +12,8 @@ namespace LtxConfigModel;
 [DebuggerDisplay("{SerializeHeader()}")]
 public class LtxSection
 {
-    private readonly List<Line>   _lines   = [];
-    private readonly List<string> _parents = [];
+    private readonly List<Line>   _lines   = new();
+    private readonly List<string> _parents = new();
     private LtxDocument? _document;
 
     /// <summary>Create a named section. Name must not be empty.</summary>
@@ -63,7 +63,7 @@ public class LtxSection
     {
         visited ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         if (!visited.Add(Name))
-            return [];
+            return Array.Empty<LtxSection>();
 
         var result = new List<LtxSection>(_parents.Count);
 
@@ -155,7 +155,8 @@ public class LtxSection
     public string? GetValue(string key) => GetKeyValueLine(key)?.GetValue()?.SingleValue;
 
     /// <summary>Return all comma-separated values for the given key, or an empty array.</summary>
-    public string[] GetValues(string key) => GetKeyValueLine(key)?.GetValue()?.Values.ToArray() ?? [];
+    public string[] GetValues(string key) => GetKeyValueLine(key)?.GetValue()?.Values.ToArray() 
+                                             ?? Array.Empty<string>();
 
     /// <summary>
     /// Replace the value of an existing key while preserving the key padding and the line comment.
@@ -196,7 +197,7 @@ public class LtxSection
 
         var oldValue = line.GetValue();
         var valuePadding = oldValue?.Padding ?? Padding.None;
-        var oldItems = oldValue?.Items ?? [];
+        var oldItems = oldValue?.Items ?? Array.Empty<ValueItem>();
 
         var newValuesList = values.ToList();
         var newItems = new List<ValueItem>(newValuesList.Count);

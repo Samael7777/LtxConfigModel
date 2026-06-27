@@ -8,7 +8,7 @@ namespace LtxConfigModel;
 /// </summary>
 public class LtxDocument
 {
-    private readonly List<LtxSection> _sections = [];
+    private readonly List<LtxSection> _sections = new();
 
     /// <summary>Create an empty LTX document with a root (unnamed) section.</summary>
     public LtxDocument()

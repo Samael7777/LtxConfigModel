@@ -13,7 +13,7 @@ namespace LtxConfigModel;
 [DebuggerDisplay("{Serialize(false, 8).Trim()}")]
 public class Line
 {
-    private readonly List<LineElement> _elements = [];
+    private readonly List<LineElement> _elements = new();
 
     /// <summary>Ordered list of elements that make up this line.</summary>
     public IReadOnlyList<LineElement> Elements => _elements;

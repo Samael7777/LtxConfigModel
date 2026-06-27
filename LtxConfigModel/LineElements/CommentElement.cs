@@ -7,11 +7,20 @@ namespace LtxConfigModel.LineElements;
 /// Padding.Left controls spaces before the comment marker (';').
 /// </summary>
 [DebuggerDisplay(";{Text}")]
-public class CommentElement(string text, Padding padding = default) : LineElement(padding)
+public class CommentElement : LineElement
 {
-    /// <summary>Comment text without the leading ';' character.</summary>
-    public string Text { get; set; } = text;
+    /// <summary>
+    /// Represents a trailing comment element. Serialized as: [Padding.Left];text
+    /// Padding.Left controls spaces before the comment marker (';').
+    /// </summary>
+    public CommentElement(string text, Padding padding = default) : base(padding)
+    {
+        Text = text;
+    }
 
-n    public override string Serialize()
+    /// <summary>Comment text without the leading ';' character.</summary>
+    public string Text { get; set; }
+
+    public override string Serialize()
         => $"{Padding.LeftStr};{Text}";
 }
